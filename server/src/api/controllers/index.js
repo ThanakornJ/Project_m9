@@ -4,7 +4,7 @@ import { showExerciseController, createExerciseController, deleteExerciseControl
 import { getCommentController, crateCommentController, createCommentReplyController, updateCommentController, deleteCommentController } from './comment.controller';
 import { getTargetAccountController, createSetTargetController, deleteTargetController } from './setTarget.controller';
 import { getCalorieTargetUserController,deleteCalorieTargetUserController } from './calorieTarget.controller';
-import {createSaveExerciseController,getSaveExerciseController} from './saveExercise.controller'
+import {createSaveExerciseController,getSaveExerciseController, deleteSaveExerciseController } from './saveExercise.controller'
 import { getSaveFoodController, createSaveFoodController, deleteSaveFoodController } from './saveFood.controller';
 
 const controllers = {
@@ -48,7 +48,8 @@ const controllers = {
     },
     saveExercise:{
         createSaveExerciseController,
-        getSaveExerciseController
+        getSaveExerciseController,
+        deleteSaveExerciseController
     },
     saveFood: {
         getSaveFoodController,
