@@ -38,7 +38,7 @@ const deleteSaveFoodController = async (req, res) => {
     try {
         const saveFoodID = req.params.id;
 
-        const deleteSaveFood = await deleteSaveFoodService(saveFoodID);
+        const deleteSaveFood = await deleteSaveFoodService(parseInt(saveFoodID));
 
         if (deleteSaveFood.error) {
             return res.status(400).json({
