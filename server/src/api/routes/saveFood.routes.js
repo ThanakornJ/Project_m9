@@ -29,6 +29,6 @@ route.options('delete/:id', cors(corsOption.corsDeleteSaveFood));
 
 route.get('/show', cors(corsOption.corsSaveFood), passport.authenticate('jwt', { session: false }), getSaveFoodController);
 route.post('/create', cors(corsOption.corsCreateFood), passport.authenticate('jwt', { session: false }), createSaveFoodController);
-route.delete('/delete', cors(corsOption.corsDeleteSaveFood), passport.authenticate('jwt', { session: false }), deleteSaveFoodController);
+route.delete('/delete/:id', cors(corsOption.corsDeleteSaveFood), passport.authenticate('jwt', { session: false }), deleteSaveFoodController);
 
 export default route;
