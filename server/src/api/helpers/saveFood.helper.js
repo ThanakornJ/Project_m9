@@ -1,11 +1,13 @@
 import db from '../../config/database';
 
 const SaveFood = db.saveFood;
+const Food = db.foods;
+const CaloriesFood = db.caloriesFood;
 
 const getSaveFoodDB = (accountID) => {
     return new Promise( async (resolve, reject) => {
         try {
-            const saveFoods = await SaveFood.findAll({ where: { account_id: accountID } });
+            const saveFoods = await SaveFood.findAll({ include: { model: Food, attributes: ['food_id', 'food_name'] , include: { model: CaloriesFood, attributes: ['calories_total'] } }, where: { account_id: accountID } });
 
             return resolve(saveFoods);
         } catch (error) {
