@@ -1,18 +1,13 @@
-export default function saveExerciseModel(sequelize, Sequelize) {
-    const saveExercise = sequelize.define(
-        "saveExercises",
+export default function saveFoodModel(sequelize, Sequelize) {
+    const saveFoods = sequelize.define(
+        'saveFood',
         {
-            saveExerciseID: {
+            saveFoodID: {
                 type: Sequelize.INTEGER(10),
-                field: "save_exercise_id",
+                field: 'save_food_id',
                 allowNull: false,
                 autoIncrement: true,
-                primaryKey: true,
-            },
-            saveAmount: {
-                type: Sequelize.INTEGER(4),
-                field: "save_amount",
-                allowNull: false,
+                primaryKey: true
             },
             creteAt: {
                 type: Sequelize.DATE,
@@ -25,12 +20,12 @@ export default function saveExerciseModel(sequelize, Sequelize) {
                 field: "update_at",
                 allowNull: false,
                 defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),
-            },
+            }
         },
         {
-            tableName: "save_exercise",
+            tableName: 'save_food'
         }
     );
 
-    return saveExercise;
+    return saveFoods;
 }

@@ -1,11 +1,11 @@
 import db from '../../config/database';
 
-const SaveExercise = db.SaveExercise
+const SaveExercise = db.saveExercise;
 
-const getSaveExerciseDB = () => {
+const getSaveExerciseDB = (accountID) => {
     return new Promise( async (resolve, reject) => {
         try {
-            const exercise = await SaveExercise({ where: { account_id: content }});
+            const exercise = await SaveExercise({ where: { account_id: accountID }});
 
             return resolve(exercise);
         } catch (error) {
@@ -38,4 +38,4 @@ const deleteSaveExerciseDB = (exerciseID) => {
     });
 }
 
-export {deleteSaveExerciseDB,crateSaveExerciseDB,getSaveExerciseDB}
+export { deleteSaveExerciseDB, crateSaveExerciseDB, getSaveExerciseDB }
