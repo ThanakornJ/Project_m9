@@ -25,7 +25,7 @@ const {createSaveExerciseController,getSaveExerciseController } = controllers.sa
 route.options('/', cors(corsOption.corsExercise));
 route.options('/create', cors(corsOption.corsAddExercise));
 
-route.get('/', cors(corsOption.corsExercise), getSaveExerciseController);
+route.get('/show', cors(corsOption.corsExercise), passport.authenticate('jwt', { session: false }), getSaveExerciseController);
 route.post('/create', cors(corsOption.corsAddExercise), passport.authenticate('jwt', { session: false }), createSaveExerciseController);
 // route.delete('/delete', cors(corsOption.corsDeleteExercise), passport.authenticate('jwt', { session: false }), deleteExerciseController);
 
