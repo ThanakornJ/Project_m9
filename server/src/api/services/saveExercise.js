@@ -38,4 +38,27 @@ const getSaveExerciseService = async (accountID) => {
         throw new Error(error);
     }
 }
-export { createSaveExerciseService,getSaveExerciseService}
+
+const deleteSaveExerciseService = async (saveExerciseID) => {
+    try {
+        if (!lodash.isNumber(saveExerciseID)) {
+            return {
+                error: false,
+                message: 'save exercise id not found'
+            }
+        } else {
+            const deleteSaveExercise = await deleteSaveExerciseDB(saveExerciseID);
+
+            return {
+                error: false,
+                message: 'delete save exercise successful',
+                content: deleteSaveExercise,
+                saveExerciseID
+            }
+        }
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
+export { createSaveExerciseService, getSaveExerciseService, deleteSaveExerciseService }
