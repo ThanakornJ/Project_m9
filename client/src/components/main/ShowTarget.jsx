@@ -64,7 +64,11 @@ function ShowTarget({ className }) {
   name();
   useEffect(async () => {
     await axios
-      .get("http://localhost:5050/api/showtarget/",{})
+      .get("http://localhost:5050/api/showtarget/", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token_user"),
+        },
+      })
       .then((res) => {
         console.log(res);
         setEnergy(res.data);

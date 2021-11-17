@@ -35,7 +35,7 @@ const createSaveExerciseController = async (req, res) => {
 const deleteSaveExerciseController = async (req, res) => {
     try {
         const saveExerciseID = req.params.id;
-
+           console.log(saveExerciseID);
         const deleteSaveExercise = await deleteSaveExerciseService(parseInt(saveExerciseID));
         
         if (deleteSaveExercise.error) {

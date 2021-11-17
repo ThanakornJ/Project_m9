@@ -112,7 +112,9 @@ function Header({ className }) {
                 ?
                 <div>
                     <div className="group-item">
-                        <h3>{username}</h3>
+                  
+                    <h1 className="user"> <i class="fa">&#xf007;</i>{localStorage.getItem('username_user')}</h1>
+
                         <Link to="/sign-out" className="btn btn-sign__in" onClick={handleSignOut}>Sign out</Link>
                     </div>
                 </div>
@@ -173,6 +175,9 @@ Header.propTypes = {
 }
 
 export default styled(Header)`
+.user{
+    font-size:25px
+}
     display: flex;
     justify-content: space-between;
     align-items: center;

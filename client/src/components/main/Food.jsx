@@ -10,6 +10,10 @@ function Food({ className }) {
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   const [saveFood, setSaveFood] = useState("");
+  // 
+  const [protein,setProtein] =useState(0);
+  const [carb,serCarb] =useState(0);
+  const [fat,setFat] =useState();
 
   useEffect(async () => {
     await axios
@@ -17,6 +21,8 @@ function Food({ className }) {
       .then((res) => {
         console.log(res);
         setPosts(res.data);
+        
+        console.log(protein);
         console.log(posts);
         console.log(`sadasdsa`);
       })
