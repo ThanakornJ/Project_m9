@@ -5,8 +5,9 @@ import foodRoute from './food.routes';
 import exerciseRoute from './exercise.routes';
 import setTargetRoute from './setTarget.routes';
 import commentRoute from './comment.routes';
-import calorieTarget from './calorieTarget.routes'
-import saveExercise from './saveExercise.routes'
+import calorieTarget from './calorieTarget.routes';
+import saveExercise from './saveExercise.routes';
+import saveFood from './saveFood.routes';
 
 const routes = Router();
 
@@ -16,8 +17,9 @@ routes.use('/foods', foodRoute);
 routes.use('/exercise', exerciseRoute);
 routes.use('/target', setTargetRoute);
 routes.use('/comment', commentRoute);
-routes.use('/showtarget',calorieTarget)
-routes.use('/save',saveExercise)
+routes.use('/showtarget',calorieTarget);
+routes.use('/save-exercise', saveExercise);
+routes.use('/save-food', saveFood);
 
 
 export default routes;

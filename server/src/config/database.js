@@ -36,9 +36,20 @@ db.account.hasMany(db.comment, { foreignKey: { name: 'accountID', field: 'accoun
 db.exercise.hasMany(db.comment, { foreignKey: { name: 'exerciseID', field: 'exercise_id' } })
 db.comment.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
 db.comment.belongsTo(db.exercise, { foreignKey: { name: 'exerciseID', field: 'exercise_id' } });
-db.saveCal.belongsTo(db.caloriesTarget, { foreignKey: { name: 'caloriesTargetID', field: 'calories_target_id' } });
+db.account.hasMany(db.saveFood, { foreignKey: { name: 'accountID', field: 'account_id' } });
+db.saveFood.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
+db.account.hasMany(db.saveExercise, { foreignKey: { name: 'accountID', field: 'account_id' } });
 db.saveExercise.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
-
+db.foods.hasOne(db.saveFood, { foreignKey: { name: 'foodID', field: 'food_id' } });
+db.saveFood.belongsTo(db.foods, { foreignKey: { name: 'foodID', field: 'food_id' } });
+db.exercise.hasOne(db.saveExercise, { foreignKey: { name: 'exerciseID', field: 'exercise_id' } });
+db.saveExercise.belongsTo(db.exercise, { foreignKey: { name: 'exerciseID', field: 'exercise_id' } });
+db.account.hasMany(db.saveCal, { foreignKey: { name: 'accountID', field: 'account_id' } });
+db.saveCal.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
+db.saveFood.hasMany(db.saveCal, { foreignKey: { name: 'saveFoodID', field: 'save_food_id' } });
+db.saveCal.belongsTo(db.saveFood, { foreignKey: { name: 'saveFoodID', field: 'save_food_id' } });
+db.saveExercise.hasMany(db.saveCal, { foreignKey: { name: 'saveExerciseID', field: 'save_exercise_id' } });
+db.saveCal.belongsTo(db.saveExercise, { foreignKey: { name: 'saveExerciseID', field: 'save_exercise_id' } });
 
 
 export default db;

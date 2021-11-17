@@ -9,8 +9,10 @@ import foodsModel from "./foods.model";
 import caloriesFoodModel from './caloriesFood.model';
 import ingredientModel from './ingredients.model';
 import ingredientTypesModel from './ingredientTypes.model';
-import saveCal from "./saveCal.model";
-import saveExercise from "./saveExercise.model"
+import saveCalModel from "./saveCal.model";
+import saveExerciseModel from "./saveExercise.model"
+import saveFoodModel from "./saveFood.model";
+
 const models = {
     accountModel,
     typeAccountModel,
@@ -23,8 +25,9 @@ const models = {
     caloriesFoodModel,
     ingredientModel,
     ingredientTypesModel,
-    saveCal,
-    saveExercise
+    saveCalModel,
+    saveExerciseModel,
+    saveFoodModel
 }
 
 export default models;
