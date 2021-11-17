@@ -33,7 +33,7 @@ export default function saveCal(sequelize, Sequelize) {
             }
         },
         {
-            tableName: 'save_calo'
+            tableName: 'save_cal'
         }
     );
 

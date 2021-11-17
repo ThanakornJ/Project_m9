@@ -134,4 +134,25 @@ const isCommentReplyContent = (content) => {
     });
 }
 
-export { isPassword, isFoodContent, isIngredientsFoodContent, isExerciseContent, isTargetContent, isCommentContent, isCommentReplyContent };
+const isSaveFoodContent = (content) => {
+    return new Promise((resolve, reject) => {
+        const { foodID } = content;
+
+        if (!lodash.isNumber(foodID)) {
+            return resolve({ error: true, message: 'food id not found' });
+        } else {
+            return resolve({ error: false });
+        }
+    });
+}
+
+export { 
+    isPassword,
+    isFoodContent,
+    isIngredientsFoodContent,
+    isExerciseContent,
+    isTargetContent,
+    isCommentContent,
+    isCommentReplyContent,
+    isSaveFoodContent 
+};
