@@ -12,6 +12,8 @@ import ShowTargetUser from './pages/ShowTargetUser';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ChartCalories from './pages/ChartCalories';
+import FoodUser from './pages/Food';
+
 
 // ADMIN
 import Dashboard from './pages/Admin/Dashboard';
@@ -40,6 +42,8 @@ function App() {
         <Route path="/sign-in" component={Login} />
         <Route path="/sign-up" component={Register} />
         <Route path="/chart" component={ChartCalories} />
+        <Route path="/food-user" component={FoodUser} />
+
 
         <Route path="/" component={Home} />
       </Switch>

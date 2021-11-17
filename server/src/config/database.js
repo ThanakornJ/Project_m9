@@ -37,6 +37,8 @@ db.exercise.hasMany(db.comment, { foreignKey: { name: 'exerciseID', field: 'exer
 db.comment.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
 db.comment.belongsTo(db.exercise, { foreignKey: { name: 'exerciseID', field: 'exercise_id' } });
 db.saveCal.belongsTo(db.caloriesTarget, { foreignKey: { name: 'caloriesTargetID', field: 'calories_target_id' } });
+db.saveExercise.belongsTo(db.account, { foreignKey: { name: 'accountID', field: 'account_id' } });
+
 
 
 export default db;

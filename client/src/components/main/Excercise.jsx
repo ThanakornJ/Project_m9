@@ -41,8 +41,10 @@ function Workout({ className }) {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire("Saved!", "", "success");
-                axios.post("http://localhost:8080/create", {
-                   
+                axios.post("http://localhost:5050/api/save/create", {
+                    saveExerciseName:exerciseName,
+                    saveExerciseCalories:exerciseCalories,
+                    amount:amount
                 });
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");

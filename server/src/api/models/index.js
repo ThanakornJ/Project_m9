@@ -10,7 +10,7 @@ import caloriesFoodModel from './caloriesFood.model';
 import ingredientModel from './ingredients.model';
 import ingredientTypesModel from './ingredientTypes.model';
 import saveCal from "./saveCal.model";
-
+import saveExercise from "./saveExercise.model"
 const models = {
     accountModel,
     typeAccountModel,
@@ -23,7 +23,8 @@ const models = {
     caloriesFoodModel,
     ingredientModel,
     ingredientTypesModel,
-    saveCal
+    saveCal,
+    saveExercise
 }
 
 export default models;

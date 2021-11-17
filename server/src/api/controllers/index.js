@@ -4,7 +4,7 @@ import { showExerciseController, createExerciseController, deleteExerciseControl
 import { getCommentController, crateCommentController, createCommentReplyController, updateCommentController, deleteCommentController } from './comment.controller';
 import { getTargetAccountController, createSetTargetController, deleteTargetController } from './setTarget.controller';
 import { getCalorieTargetUserController,deleteCalorieTargetUserController } from './calorieTarget.controller';
-
+import {createSaveExerciseController,getSaveExerciseController} from './saveExercise.controller'
 const controllers = {
     account: {
         getAllUserController,
@@ -41,8 +41,13 @@ const controllers = {
     },
     caloriesTarget: {
         getCalorieTargetUserController,
-        deleteCalorieTargetUserController
+        deleteCalorieTargetUserController,
+       
     },
+    saveExercise:{
+        createSaveExerciseController,
+        getSaveExerciseController
+    }
 }
 
 export default controllers;

@@ -5,6 +5,7 @@ import { getExerciseService, createExerciseService, updateExerciseService, delet
 import { getCommentService, createCommentService, createCommentReplyService, updateCommentService, deleteCommentService } from './comment.service';
 import {  getTargetAccountService, getDetailTargetService, crateTargetService, updateTargetService, deleteTargetService } from './setTarget.service';
 import {getCalorieTargetUserService,deleteCalorieTargetUserService} from './calorieTarget.service'
+import {createSaveExerciseService,getSaveExerciseService} from'./saveExercise'
 const services = {
     account: {
         getAllUserService,
@@ -47,6 +48,10 @@ const services = {
     calories:{
         getCalorieTargetUserService,
         deleteCalorieTargetUserService
+    },
+    saveExercise:{
+        createSaveExerciseService,
+        getSaveExerciseService
     }
 };
 

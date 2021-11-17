@@ -9,7 +9,7 @@ import { getTargetDB, getTargetExDB, createSetTargetDB, updateSetTargetDB, delet
 import { getCalorieTargetExDB, getOneCaloriesTargetExDB, createCaloriesTargetExDB, updateCaloriesTargetExDB, deleteCaloriesTargetExDB } from './calorieTarget.helper';
 import { getCommentDB, createCommentDB, updateCommentDB, deleteCommentDB } from './comment.helper';
 import { getSaveCaloriesDayDB, getDetailSaveCaloriesDay, createSaveCaloriesDay, updateSaveCaloriesDay, deleteSaveCaloriesDay } from './saveCaloriesDay';
-
+import {deleteSaveExerciseDB,crateSaveExerciseDB,getSaveExerciseDB} from './saveExercise.helper'
 const helpers = {
     accounts: {
         getAllUserDB,
@@ -84,6 +84,11 @@ const helpers = {
         createSaveCaloriesDay,
         updateSaveCaloriesDay,
         deleteSaveCaloriesDay
+    },
+    saveExercise:{
+        deleteSaveExerciseDB,
+        crateSaveExerciseDB,
+        getSaveExerciseDB
     }
 };
 

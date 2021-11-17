@@ -29,7 +29,7 @@ function Navbar({ className }) {
         </Link>
       </li>
       <li className="list">
-        <Link to="/food" className="btn-link-privacy">
+        <Link to="/food-user" className="btn-link-privacy">
           <small>Food</small>
         </Link>
       </li>

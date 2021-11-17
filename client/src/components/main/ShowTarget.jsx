@@ -64,7 +64,7 @@ function ShowTarget({ className }) {
   name();
   useEffect(async () => {
     await axios
-      .get("http://localhost:5050/api/showtarget/", { })
+      .get("http://localhost:5050/api/showtarget/",{})
       .then((res) => {
         console.log(res);
         setEnergy(res.data);
