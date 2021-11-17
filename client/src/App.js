@@ -13,6 +13,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ChartCalories from './pages/ChartCalories';
 import FoodUser from './pages/Food';
+import SaveCaloriesDay from './pages/SaveCaloriesDay';
 
 
 // ADMIN
@@ -43,8 +44,7 @@ function App() {
         <Route path="/sign-up" component={Register} />
         <Route path="/chart" component={ChartCalories} />
         <Route path="/food-user" component={FoodUser} />
-
-
+        <Route path="/save-calories" component={SaveCaloriesDay}/>
         <Route path="/" component={Home} />
       </Switch>
     </ScrollToTop>

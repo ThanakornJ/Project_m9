@@ -68,7 +68,7 @@ export default styled(Navbar)`
     background-color: #2bc592;
     height: 80px;
     width: 100%;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
 
 
   }
