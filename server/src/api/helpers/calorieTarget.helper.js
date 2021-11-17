@@ -1,12 +1,13 @@
 import db from '../../config/database';
 
 const CalorieTarget = db.caloriesTarget;
+const Target = db.setTarget;
 
-const getCalorieTargetExDB = () => {
+const getCalorieTargetExDB = (accountID) => {
     return new Promise( async (resolve, reject) => {
         try { 
             console.log(`555+`);
-            const calorieTarget = await CalorieTarget.findAll()
+            const calorieTarget = await CalorieTarget.findAll({ include: { model: Target, where: { account_id: accountID } } });
             return resolve(calorieTarget);
         } catch (error) {
             return reject(error)

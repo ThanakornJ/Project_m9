@@ -4,9 +4,9 @@ import lodash from 'lodash';
 
 const { getCalorieTargetExDB, deleteCaloriesTargetExDB } =helpers.caloriesTarget;
 
-const getCalorieTargetUserService = async ()=>{
+const getCalorieTargetUserService = async (accountID)=>{
     try{
-        const calorieTargetUser = await getCalorieTargetExDB();
+        const calorieTargetUser = await getCalorieTargetExDB(accountID);
         return calorieTargetUser;
     }
     catch (error){

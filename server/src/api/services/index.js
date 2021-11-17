@@ -5,7 +5,7 @@ import { getExerciseService, createExerciseService, updateExerciseService, delet
 import { getCommentService, createCommentService, createCommentReplyService, updateCommentService, deleteCommentService } from './comment.service';
 import {  getTargetAccountService, getDetailTargetService, crateTargetService, updateTargetService, deleteTargetService } from './setTarget.service';
 import {getCalorieTargetUserService,deleteCalorieTargetUserService} from './calorieTarget.service'
-import {createSaveExerciseService,getSaveExerciseService} from'./saveExercise'
+import {createSaveExerciseService,getSaveExerciseService, deleteSaveExerciseService } from'./saveExercise'
 import { getSaveFoodService, createSaveFoodService, deleteSaveFoodService } from './saveFood.service';
 
 const services = {
@@ -53,7 +53,8 @@ const services = {
     },
     saveExercise:{
         createSaveExerciseService,
-        getSaveExerciseService
+        getSaveExerciseService,
+        deleteSaveExerciseService
     },
     saveFood: {
         getSaveFoodService,

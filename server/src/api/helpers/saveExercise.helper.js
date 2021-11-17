@@ -27,10 +27,10 @@ const crateSaveExerciseDB = (content) => {
     });
 }
 
-const deleteSaveExerciseDB = (exerciseID) => {
+const deleteSaveExerciseDB = (saveExerciseID) => {
     return new Promise( async (resolve, reject) => {
         try {
-            const deleteExercise = await SaveExercise.destroy({ where: { exercise_id: exerciseID } });
+            const deleteExercise = await SaveExercise.destroy({ where: { exercise_id: saveExerciseID } });
 
             return resolve(deleteExercise);
         } catch (error) {

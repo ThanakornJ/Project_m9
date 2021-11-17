@@ -4,7 +4,9 @@ const { getCalorieTargetUserService,deleteCalorieTargetUserService } = services.
 
 const getCalorieTargetUserController = async (req,res)=>{
     try {
-        const calorieTargetUser = await getCalorieTargetUserService();
+        const { accountID } = req.user.data;
+
+        const calorieTargetUser = await getCalorieTargetUserService(accountID);
         return res.status(200).json(calorieTargetUser);
     }
     catch (error){

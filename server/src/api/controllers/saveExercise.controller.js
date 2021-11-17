@@ -1,5 +1,5 @@
 import services from "../services";
-const {createSaveExerciseService,getSaveExerciseService} = services.saveExercise;
+const {createSaveExerciseService,getSaveExerciseService, deleteSaveExerciseService} = services.saveExercise;
 
 const getSaveExerciseController = async (req, res) => {
     try {
@@ -31,4 +31,24 @@ const createSaveExerciseController = async (req, res) => {
         return res.sendStatus(500);
     }
 }
-export {createSaveExerciseController,getSaveExerciseController}
+
+const deleteSaveExerciseController = async (req, res) => {
+    try {
+        const saveExerciseID = req.params.id;
+
+        const deleteSaveExercise = await deleteSaveExerciseService(parseInt(saveExerciseID));
+        
+        if (deleteSaveExercise.error) {
+            return res.status(400).json({
+                message: deleteSaveExercise.message
+            });
+        } else {
+            return res.status(200).json(deleteSaveExercise);
+        }
+    } catch (error) {
+        console.log(error.message);
+        return res.sendStatus(500);
+    }
+}
+
+export {createSaveExerciseController,getSaveExerciseController, deleteSaveExerciseController };
