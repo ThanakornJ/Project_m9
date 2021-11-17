@@ -1,6 +1,7 @@
 import express, { json, urlencoded } from 'express';
 import http from 'http';
 import helmet from 'helmet';
+import cors from 'cors';
 import passport from './passport';
 import socket from './socket';
 import db from './database';
@@ -13,6 +14,7 @@ export default function start() {
     app.use(json());
     app.use(urlencoded({ extended: false }));
     app.use(helmet());
+    app.use(cors());
     db.sequelize.sync();
     passport();
     socket(server);

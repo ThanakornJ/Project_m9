@@ -11,7 +11,6 @@ function Food({ className }) {
   const [search, setSearch] = useState("");
   const [saveFood, setSaveFood] = useState("");
 
-  console.log(`sadasdsa`);
   useEffect(async () => {
     await axios
       .get("http://localhost:5050/api/foods/food-ingredients")
@@ -37,19 +36,27 @@ function Food({ className }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
-        axios.post("http://localhost:5050/api/save-food/create", {
-          foodID: foodID,
-        }, { headers: {
-          "Authorization": "Bearer " + localStorage.getItem("token_user")
-        }})
-        .then(()=>[
-        ...saveFood,
-          {
-            foodID: foodID,
-          }
-        ]).catch((err) => {
-          console.log(err.response);
-        })
+        axios
+          .post(
+            "http://localhost:5050/api/save-food/create",
+            {
+              foodID: foodID,
+            },
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("token_user"),
+              },
+            }
+          )
+          .then(() => [
+            ...saveFood,
+            {
+              foodID: foodID,
+            },
+          ])
+          .catch((err) => {
+            console.log(err.response);
+          });
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
@@ -104,12 +111,15 @@ function Food({ className }) {
                       <td>{post.ingredients[1].quantityGram}</td>
                     </tr> */}
 
-                    <tr>
-                      {post.ingredients.map((p) =>  {
-                        <h1>{[1].ingredientName}</h1>
-                        // <td>{p.ingredientName}</td>;
-                      })}
-                    </tr>
+                    {post.ingredients.map((p) => {
+                      return (
+                        <tr>
+                          <td>{p.ingredientName} </td>
+                          <td>{p.quantityGram} </td>
+                        </tr>
+                      );
+                      // <td>{p.ingredientName}</td>;
+                    })}
                   </table>
                 </div>
               </div>
