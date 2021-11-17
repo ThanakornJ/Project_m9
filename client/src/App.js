@@ -22,19 +22,20 @@ import ExerciseAdmin from './pages/Admin/ExerciseAdmin';
 import UsersAdmin from './pages/Admin/UsersAdmin';
 import FoodAdmin from './pages/Admin/FoodAdmin';
 import NewFood from './pages/Admin/NewFood';
-
+import EE from './pages/Admin//Ext'
 
 function App() {
   return (
     <ScrollToTop>
       <Switch>
         <PrivateRoute path="/dashboard" component={Dashboard} />
-        <Route path="/exercise" component={ExerciseAdmin} />
+        {/* <Route path="/exercise" component={ExerciseAdmin} /> */}
         <PrivateRoute path="/users" component={UsersAdmin} />
         <PrivateRoute path="/foods" component={FoodAdmin} />
-        {/* <PrivateRoute path="/exercise" component={FoodAdmin} /> */}
+        {/* <PrivateRoute path="/exercise" component={ExerciseAdmin} /> */}
 
         <PrivateRoute path="/new-food" component={NewFood} />
+        <Route path="/ee" component={EE} />
 
         <Route path="/target" component={Target} />
         <Route path="/exercise-user" component={ExcerciseUser} />

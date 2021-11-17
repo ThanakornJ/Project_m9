@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 function Navbar({ className }) {
   return (
       <div className={className}>
+        <center>
     <nav>
         <ul>
       <li className="list">
@@ -38,13 +39,9 @@ function Navbar({ className }) {
           <small>savecalday</small>
         </Link>
       </li>
-      <li className="list">
-        <Link to="/chart" className="btn-link-privacy">
-          <small>chartcalories</small>
-        </Link>
-      </li>
+    
       </ul>
-    </nav>
+    </nav></center>
     </div>
   );
 }
@@ -64,7 +61,7 @@ export default styled(Navbar)`
   }
 
   nav {
-    padding-left:35.25rem;
+   
     background-color: #2bc592;
     height: 80px;
     width: 100%;

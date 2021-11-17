@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-
+  import { Link, useHistory } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 function Workout({ className }) {
   const [posts, setPosts] = useState([]);
@@ -15,6 +15,8 @@ function Workout({ className }) {
   const [search, setSearch] = useState("");
   const [saveExercise, setSaveExercise] = useState("");
 
+
+  const history = useHistory();
 
   useEffect(async () => {
     await axios
@@ -44,7 +46,9 @@ function Workout({ className }) {
   
   }, { headers: {
     "Authorization": "Bearer " + localStorage.getItem("token_user")
-  }})
+  }})  .then(() => {
+    history.push("/save-calories");
+  })
   .then(()=>[
   ...saveExercise,
     {
@@ -149,17 +153,17 @@ export default styled(Workout)`
     margin-bottom: 20px;
   }
   .container {
-    width: 1300px;
+    width: 1100px;
   }
   .Area {
-    width: 1100px;
+   width:100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 25px;
   }
   .Area2 {
-    width: 1100px;
+    width:100%;
     margin: 0 auto;
     height: 700px;
     display: grid;

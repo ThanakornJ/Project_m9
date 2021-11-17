@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Swal from "sweetalert2";
-
+import { Link, useHistory } from "react-router-dom";
 function Food({ className }) {
   const [inx, setInx] = useState([]);
   const [posts, setPosts] = useState([]);
@@ -14,6 +14,8 @@ function Food({ className }) {
   const [protein,setProtein] =useState(0);
   const [carb,serCarb] =useState(0);
   const [fat,setFat] =useState();
+  
+  const history = useHistory();
 
   useEffect(async () => {
     await axios
@@ -53,7 +55,9 @@ function Food({ className }) {
                 Authorization: "Bearer " + localStorage.getItem("token_user"),
               },
             }
-          )
+          ).then(() => {
+            history.push("/save-calories");
+          })
           .then(() => [
             ...saveFood,
             {
@@ -71,6 +75,7 @@ function Food({ className }) {
   const fillterFoods = posts.filter((exercise) => {
     return exercise.foodName.includes(search);
   });
+  const array1 = [200,245,180,160];
   return (
     <div className={className}>
       <div className="container">
@@ -102,11 +107,16 @@ function Food({ className }) {
                   <img src={post.foodImage} alt="Avatar" />
                 </div>
                 <div class="flip-card-back">
-                  <h1>{post.foodName}</h1>
+                  <center>
+                  <h3>{post.foodName}</h3>
+             
+                  
+
+
+                    </center>
 
                   <table>
-                    <th>วัตถุดิบ</th>
-                    <th>กรัม</th>
+                  
                     {/* <tr>
                       <td>{post.ingredients[0].ingredientName}</td>
                       <td>{post.ingredients[0].quantityGram}</td>
@@ -122,7 +132,10 @@ function Food({ className }) {
                         <tr>
                           <td>{p.ingredientName} </td>
                           <td>{p.quantityGram} </td>
+                          <td>กรัม</td>
+                           
                         </tr>
+                       
                       );
                       // <td>{p.ingredientName}</td>;
                     })}
@@ -219,13 +232,15 @@ export default styled(Food)`
     width: 300px;
     height: 300px;
     perspective: 1000px;
+    
   }
 
   .flip-card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    text-align: center;
+    /* text-align: center; */
+    
     transition: transform 0.6s;
     transform-style: preserve-3d;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -247,13 +262,24 @@ export default styled(Food)`
   .flip-card-front {
     background-color: #bbb;
     color: black;
+    
   }
 
   .flip-card-back {
     background-color: #0fca6c;
     color: white;
     transform: rotateY(180deg);
+   
+    
   }
+  table{
+    width:100%
+  }
+  td{
+    width: 33.33%;
+    text-align:center
+  }
+  
 
   @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 

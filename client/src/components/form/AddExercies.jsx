@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -11,6 +11,7 @@ function AddExercise({ className }) {
   const [amount, setAmount] = useState(1);
   const [calorie, setCalorie] = useState(0);
   const [exercise, setExercise] = useState("");
+  const [re, setRe] = useState("");
 
   const addExercise = () => {
     console.log(name);
@@ -21,40 +22,61 @@ function AddExercise({ className }) {
     console.log(amount);
     console.log(calorie);
     // console.log(exercise);
-    axios.post("http://localhost:5050/api/exercise/create", {
-        exerciseName:name,
-        exerciseCalories:parseFloat(calorie),
-        amount:amount,
-        img:urlpic,
-        video:urlvideo,
-        description:description,
-        exercise:exercise,
-        set:set,
-
-      },{ headers: {
-        "Authorization": "Bearer " + localStorage.getItem("token_user")
-      }})
+    axios
+      .post(
+        "http://localhost:5050/api/exercise/create",
+        {
+          exerciseName: name,
+          exerciseCalories: parseFloat(calorie),
+          amount: amount,
+          img: urlpic,
+          video: urlvideo,
+          description: description,
+          exercise: exercise,
+          set: set,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token_user"),
+          },
+        }
+      )
       .then(() => [
         ...exercise,
         {
-          exerciseName:name,
-          img:urlpic,
-          video:urlvideo,
-          description:description,
+          exerciseName: name,
+          img: urlpic,
+          video: urlvideo,
+          description: description,
           amount: amount,
-          exerciseCalories:calorie,
-          exercise:exercise,
-          set:set,
+          exerciseCalories: calorie,
+          exercise: exercise,
+          set: set,
         },
-      ])
+      ]).then(()=>{
+        window.location.reload();
+      })
+      
       .catch((err) => {
         console.log(err.response);
       });
   };
-
+  useEffect(async () => {
+    await axios
+      .get("http://localhost:5050/api/exercise")
+      .then((res) => {
+        console.log(res);
+        setRe(res.data);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className={className}>
-      <form className="form-area">
+    
+        <form className="form-area">
         <div className="container w-25">
           <h1 className="title">เพิ่มท่าออกกำลังกาย</h1>
           <div class="form-floating mb-3">
@@ -90,8 +112,9 @@ function AddExercise({ className }) {
               }}
             />
           </div>
+          <label>วิธีทำ</label>
           <div class="form-floating mb-3">
-            <label>วิธีทำ</label>
+            
             <textarea
               type="text"
               class="form-control"
@@ -154,9 +177,9 @@ export default styled(AddExercise)`
     width: 500px;
     background-color: #f2f2f2;
     padding: 30px;
-    border-radius: 30px;
+   
   }
-  input[type="text"] {
+  input[type="text"],input[type="number"],textarea {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

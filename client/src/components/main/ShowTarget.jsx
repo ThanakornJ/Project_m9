@@ -241,6 +241,7 @@ export default styled(ShowTarget)`
  
   }
   button{
+    margin-top: 50px;
     background-color: #4CAF50; /* Green */
   border: none;
   color: white;

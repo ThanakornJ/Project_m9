@@ -22,7 +22,7 @@ function SideBarMenu() {
                             <span className="nav__name">Users</span>
                         </NavLink>
 
-                        <NavLink to="/add-exercise" className="nav__link" activeClassName="active__nav">
+                        <NavLink to="/ee" className="nav__link" activeClassName="active__nav">
                             <i className='bx bx-cycling'></i>
                             <span className="nav__name">Exercise</span>
                         </NavLink>

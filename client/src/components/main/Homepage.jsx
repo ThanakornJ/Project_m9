@@ -27,9 +27,7 @@ function Homepage({className}) {
              <div className="w3-container w3-content w3-center w3-padding-10"  id="band">
     <h2 className="w3-wide">AVO</h2>
     <p className="w3-opacity"><i>We love Health</i></p>
-    <p className="w3-justify">We have created a fictional band website. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur
-      adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p className="w3-justify">Health, according to the World Health Organization, is "a state of complete physical, mental and social well-being and not merely the absence of disease and infirmity". A variety of definitions have been used for different purposes over time. Health can be promoted by encouraging healthful activities, such as regular physical exercise and adequate sleep,[2] and by reducing or avoiding unhealthful activities or situations, such as smoking or excessive stress. Some factors affecting health are due to individual choices, such as whether to engage in a high-risk behavior, while others are due to structural causes, such as whether the society is arranged in a way that makes it easier or harder for people to get necessary healthcare services. Still other factors are beyond both individual and group choices, such as genetic disorders.</p>
     <div className="w3-row w3-padding-32">
       <div className="w3-third">
         <p>Food</p>
@@ -40,7 +38,7 @@ function Homepage({className}) {
         <img src="https://www.planetfitness.com/sites/default/files/feature-image/xbreak-workout_602724.jpg.pagespeed.ic.v8byD7su-e.jpg" className="w3-round w3-margin-bottom" alt="Random Name" />
       </div>
       <div className="w3-third">
-        <p>Heath</p>
+        <p>Health</p>
         <img src="https://www.samyan-mitrtown.com/wp-content/uploads/2020/09/%E0%B8%AA%E0%B8%B8%E0%B8%82%E0%B8%A0%E0%B8%B2%E0%B8%9E1-1.jpg" className="w3-round" alt="Random Name" />
       </div>
     </div>

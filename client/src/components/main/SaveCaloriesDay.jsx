@@ -16,6 +16,7 @@ function SaveCaloriesDay({ className }) {
   const [sumfood,setSumfood] =useState(0);
   const [sumexercise,setExercise] =useState(0);
   const [tdee,setTdee]=useState(0);
+  const [fd, setFd] = useState(0);
   
   useEffect(async () => {
     await axios
@@ -28,7 +29,7 @@ function SaveCaloriesDay({ className }) {
         console.log(res);
         setCalfood(res.data);
         console.log(res.data);
-        setTarget(res.data[0].saveFoodID);
+        setFd(res.data[0].saveFoodID);
         let total = 0; 
         res.data.forEach((item) => {
           total += parseFloat(item.food.caloriesFood.calories_total);
@@ -120,9 +121,7 @@ function SaveCaloriesDay({ className }) {
       date:'6/11/64',
       calfood:sumfood,
       calexercise:sumexercise,
-      name: 'C++',
-      student: 10,
-      fees: 8
+
     },
   ];
  
@@ -135,7 +134,7 @@ function SaveCaloriesDay({ className }) {
  
   <div className="title">
 
-    <h1>แคลอรี่ 7 วันที่ผ่านมา</h1>
+  <center> <h1>แคลอรี่ในแต่ละวัน</h1></center>
   </div>
           
         <ResponsiveContainer width="100%" aspect={3}>
@@ -153,16 +152,22 @@ function SaveCaloriesDay({ className }) {
         
       
      
-<center><h1>{result}</h1></center>
+<center>
+  <h1>แคลอรี่ที่เหลืออยู่ในวันนี้
+</h1>
+<h1>{result.toFixed(2)} Cal</h1>
+
+</center>
+
       <table id="customers">
    
   <tr>
-    <th>ค่าพลังงานที่ควยได้รับภายใน 1 วัน</th>
+    <th>ค่าพลังงานที่ควรได้รับภายใน 1 วัน</th>
     <th>Contact</th>
   </tr>
   <tr>
-    <td>ค่าพลังงานในการลดน้ำหนัก</td>
-    <td>{result}</td>
+    <td>ค่าพลังงานในการลดน้ำหนัก ( DEIT )</td>
+    <td>{result.toFixed(2)}</td>
   </tr>
   <tr>
     <td>ค่าพลังงานจากอาหาร</td>
@@ -182,7 +187,7 @@ function SaveCaloriesDay({ className }) {
             <th>Menu</th>
             <th>Calories</th>
             <th>Unit</th>
-            <th>Type</th>
+            <th>Delete</th>
           </tr>
           {calfood.map((food) => {
             return (
@@ -194,7 +199,7 @@ function SaveCaloriesDay({ className }) {
                   <button
                     class="button"
                     onClick={(e) => {
-                      bttdel(e,target);
+                      bttdel(e,fd);
                     }}
                   >
                     ลบ
@@ -211,7 +216,7 @@ function SaveCaloriesDay({ className }) {
             <th>Exercise</th>
             <th>Calories</th>
             <th>Unit</th>
-            <th>Type</th>
+            <th className="co3">Delete</th>
           </tr>
           {calexercise.map((p) => {
             return (
@@ -248,20 +253,29 @@ export default styled(SaveCaloriesDay)`
   .container {
     width: 1100px;
   }
+  th.co3{
+    width:10%
+  }
+  th{
+    width: 30%;
+  }
   #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    margin-top: 30px;
+    margin-bottom: 40px;
   }
 
   #customers td,
   #customers th {
     border: 1px solid #ddd;
     padding: 8px;
-    width: 33%;
+    
   }
   .button {
-    background-color: #4caf50;
+    width: 100%;
+    background-color: #ce2e07;
     border: none;
     color: white;
     
