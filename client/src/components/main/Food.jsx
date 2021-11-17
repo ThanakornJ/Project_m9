@@ -9,6 +9,8 @@ function Food({ className }) {
   const [inx, setInx] = useState([]);
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
+  const [saveFood, setSaveFood] = useState("");
+
   console.log(`sadasdsa`);
   useEffect(async () => {
     await axios
@@ -35,9 +37,19 @@ function Food({ className }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
-        axios.post("http://localhost:5050/api/save/create", {
-          savefoodID: foodID,
-        });
+        axios.post("http://localhost:5050/api/save-food/create", {
+          foodID: foodID,
+        }, { headers: {
+          "Authorization": "Bearer " + localStorage.getItem("token_user")
+        }})
+        .then(()=>[
+        ...saveFood,
+          {
+            foodID: foodID,
+          }
+        ]).catch((err) => {
+          console.log(err.response);
+        })
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }

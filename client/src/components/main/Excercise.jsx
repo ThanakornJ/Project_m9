@@ -13,6 +13,8 @@ function Workout({ className }) {
   const [name, setName] = useState("");
   const [id_workoutx, setId_workout] = useState(1);
   const [search, setSearch] = useState("");
+  const [saveExercise, setSaveExercise] = useState("");
+
 
   useEffect(async () => {
     await axios
@@ -26,12 +28,8 @@ function Workout({ className }) {
         console.log(err);
       });
   }, []);
-  const addWorkout = (exerciseID, exerciseCalories, exerciseName, amount) => {
+  const addWorkout = (exerciseID) => {
     console.log("ID ท่าออกกำลังกาย  " + exerciseID);
-    console.log("แคลอรี่ ท่าออกกำลังกาย  " + exerciseCalories);
-    console.log("ชื่อ ท่าออกกำลังกาย  " + exerciseName);
-    console.log("จำนวน ท่าออกกำลังกาย  " + amount);
-
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,
@@ -41,11 +39,20 @@ function Workout({ className }) {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
-        axios.post("http://localhost:5050/api/save/create", {
-          saveExerciseName: exerciseName,
-          saveExerciseCalories: exerciseCalories,
-          amount: amount,
-        });
+        axios.post("http://localhost:5050/api/save-exercise/create", {
+            exerciseID:exerciseID   
+  
+  }, { headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token_user")
+  }})
+  .then(()=>[
+  ...saveExercise,
+    {
+        exerciseID:exerciseID   
+    }
+  ]).catch((err) => {
+    console.log(err.response);
+  })
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
       }
@@ -84,6 +91,7 @@ function Workout({ className }) {
                     <div className="subheading">
                       วิธีทำ
                       <br />
+                      
                     </div>
                     <p className="content">
                       &nbsp;&nbsp;&nbsp;&nbsp;{post.description}
@@ -98,9 +106,7 @@ function Workout({ className }) {
                       onClick={() => {
                         addWorkout(
                           post.exerciseID,
-                          post.exerciseCalories,
-                          post.exerciseName,
-                          post.amount
+                        
                         );
                       }}
                     >
