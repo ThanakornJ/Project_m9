@@ -35,7 +35,7 @@ function App() {
         {/* <PrivateRoute path="/exercise" component={FoodAdmin} /> */}
 
         <PrivateRoute path="/new-food" component={NewFood} />
-        
+
         <Route path="/target" component={Target} />
         <Route path="/exercise-user" component={ExcerciseUser} />
         <Route path="/add-exercise" component={AddExerciseAdmin} />

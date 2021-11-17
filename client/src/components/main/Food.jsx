@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 
 function Food({ className }) {
+  const [inx, setInx] = useState([]);
   const [posts, setPosts] = useState([]);
   const [search, setSearch] = useState("");
   console.log(`sadasdsa`);
@@ -23,12 +24,8 @@ function Food({ className }) {
         console.log(err);
       });
   }, []);
-  const addWorkout = (exerciseID, exerciseCalories, exerciseName, amount) => {
-    console.log("ID ท่าออกกำลังกาย  " + exerciseID);
-    console.log("แคลอรี่ ท่าออกกำลังกาย  " + exerciseCalories);
-    console.log("ชื่อ ท่าออกกำลังกาย  " + exerciseName);
-    console.log("จำนวน ท่าออกกำลังกาย  " + amount);
-
+  const addWorkout = (foodID) => {
+    console.log(foodID);
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,
@@ -39,9 +36,7 @@ function Food({ className }) {
       if (result.isConfirmed) {
         Swal.fire("Saved!", "", "success");
         axios.post("http://localhost:5050/api/save/create", {
-          saveExerciseName: exerciseName,
-          saveExerciseCalories: exerciseCalories,
-          amount: amount,
+          savefoodID: foodID,
         });
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
@@ -53,42 +48,64 @@ function Food({ className }) {
   });
   return (
     <div className={className}>
-    <div className="container">
-      <div class="wrapper">
-        <div class="search_box">
-          <div class="search_btn">
-            <i class="fas fa-search"></i>
+      <div className="container">
+        <div class="wrapper">
+          <div class="search_box">
+            <div class="search_btn">
+              <i class="fas fa-search"></i>
+            </div>
+            <input
+              type="text"
+              class="input_search"
+              placeholder="ค้นหา ชื่อเมนูอาหาร"
+              onChange={(event) => {
+                setSearch(event.target.value);
+              }}
+            />
           </div>
-          <input
-            type="text"
-            class="input_search"
-            placeholder="ค้นหา ชื่อเมนูอาหาร"
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
+        </div>
+        <div className="Area">
+          {fillterFoods.map((post) => (
+            <div
+              class="flip-card"
+              onClick={() => {
+                addWorkout(post.foodID);
+              }}
+            >
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src={post.foodImage} alt="Avatar" />
+                </div>
+                <div class="flip-card-back">
+                  <h1>{post.foodName}</h1>
+
+                  <table>
+                    <th>วัตถุดิบ</th>
+                    <th>กรัม</th>
+                    {/* <tr>
+                      <td>{post.ingredients[0].ingredientName}</td>
+                      <td>{post.ingredients[0].quantityGram}</td>
+                    </tr>
+                    {}
+                    <tr>
+                      <td>{post.ingredients[1].ingredientName}</td>
+                      <td>{post.ingredients[1].quantityGram}</td>
+                    </tr> */}
+
+                    <tr>
+                      {post.ingredients.map((p) =>  {
+                        <h1>{[1].ingredientName}</h1>
+                        // <td>{p.ingredientName}</td>;
+                      })}
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-      <div className="Area">
-        {fillterFoods.map((post) => (
-                 <div class="flip-card">
-                 <div class="flip-card-inner">
-                   <div class="flip-card-front">
-                     <img src={post.foodImage} alt="Avatar" />
-                   </div>
-                   <div class="flip-card-back">
-                     <h1>{post.foodName}</h1> 
-                     <p>Architect & Engineer</p> 
-                     <p>We love that guy</p>
-                   </div>
-                 </div>
-               </div>
-        ))}
-
-      </div>
-
     </div>
-  </div>
   );
 }
 Food.propTypes = {
@@ -96,7 +113,7 @@ Food.propTypes = {
 };
 
 export default styled(Food)`
-  *{
+  * {
     font-size: cal(60%+0.8vmin);
     margin: 0 auto;
   }
@@ -113,7 +130,6 @@ export default styled(Food)`
   }
   .container {
     width: 1300px;
-    
   }
   .Area {
     width: 1100px;
@@ -122,18 +138,17 @@ export default styled(Food)`
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 25px;
   }
-  
+
   .item {
-    width:100%;
+    width: 100%;
     background: rgb(0, 7, 3);
     margin-bottom: 5%;
   }
- 
- img{
-   width: 100%;
-   height: 100%;
- }
 
+  img {
+    width: 100%;
+    height: 100%;
+  }
 
   .search {
     border-radius: 20px;
@@ -172,44 +187,45 @@ export default styled(Food)`
     background-image: linear-gradient(144deg, #f8f8f8, #0b4126 50%, #000301);
   }
   .flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 300px;
-  perspective: 1000px;
-}
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+  }
 
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
 
-.flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
-}
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
 
-.flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 
-.flip-card-front {
-  background-color: #bbb;
-  color: black;
-}
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
 
-.flip-card-back {
-  background-color: #0fca6c;
-  color: white;
-  transform: rotateY(180deg);
-}
+  .flip-card-back {
+    background-color: #0fca6c;
+    color: white;
+    transform: rotateY(180deg);
+  }
 
   @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
