@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 
-const isPassword = async (password) => {
+const isPassword = (password) => {
     if (!lodash.isEmpty(password)) {
         const check = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!_-])[A-Za-z\d!_-]{8,}$/g;
         return check.test(password);
